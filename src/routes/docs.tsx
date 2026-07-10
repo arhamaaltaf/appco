@@ -4,10 +4,10 @@ import { Section, SectionEyebrow, SectionHeading, SectionSub } from "@/component
 export const Route = createFileRoute("/docs")({
   head: () => ({
     meta: [
-      { title: "Docs — Forge ERP" },
-      { name: "description", content: "Guides, API references, and admin documentation for Forge ERP." },
-      { property: "og:title", content: "Docs — Forge ERP" },
-      { property: "og:description", content: "Guides and references for Forge ERP." },
+      { title: "Docs — Appco" },
+      { name: "description", content: "Guides, API references, and admin documentation for Appco." },
+      { property: "og:title", content: "Docs — Appco" },
+      { property: "og:description", content: "Guides and references for Appco." },
     ],
   }),
   component: Docs,

@@ -4,10 +4,10 @@ import { Section, SectionEyebrow, SectionHeading } from "@/components/site/secti
 export const Route = createFileRoute("/privacy")({
   head: () => ({
     meta: [
-      { title: "Privacy — Forge ERP" },
-      { name: "description", content: "How Forge ERP handles your data, dedicated instances, encryption, and retention." },
-      { property: "og:title", content: "Privacy — Forge ERP" },
-      { property: "og:description", content: "How Forge ERP handles your data." },
+      { title: "Privacy — Appco" },
+      { name: "description", content: "How Appco handles your data, dedicated instances, encryption, and retention." },
+      { property: "og:title", content: "Privacy — Appco" },
+      { property: "og:description", content: "How Appco handles your data." },
     ],
   }),
   component: Privacy,
@@ -20,7 +20,7 @@ function Privacy() {
       <SectionHeading>Your data lives on your instance.</SectionHeading>
       <div className="mt-8 max-w-3xl space-y-4 text-muted-foreground">
         <p>
-          This page is maintained by Forge ERP to answer common privacy questions about our service. It
+          This page is maintained by Appco to answer common privacy questions about our service. It
           is not a certification and does not replace our Data Processing Agreement.
         </p>
         <p>
@@ -30,7 +30,7 @@ function Privacy() {
         </p>
         <p>
           For a complete, up-to-date policy including subprocessors, retention periods, and privacy
-          requests, contact privacy@forgeerp.app.
+          requests, contact privacy@appco.app.
         </p>
       </div>
     </Section>

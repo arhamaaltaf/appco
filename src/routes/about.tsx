@@ -4,9 +4,9 @@ import { Section, SectionEyebrow, SectionHeading, SectionSub } from "@/component
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About — Forge ERP" },
+      { title: "About — Appco" },
       { name: "description", content: "We build hosted, isolated ERPNext instances so small and mid-sized teams can run their business without infrastructure work." },
-      { property: "og:title", content: "About — Forge ERP" },
+      { property: "og:title", content: "About — Appco" },
       { property: "og:description", content: "We build hosted ERPNext for teams that want to focus on operations, not servers." },
     ],
   }),
@@ -19,7 +19,7 @@ function About() {
       <SectionEyebrow>About</SectionEyebrow>
       <SectionHeading>ERPNext without the ERP project.</SectionHeading>
       <SectionSub>
-        Forge ERP was built by operators tired of shared spreadsheets, half-finished implementations, and
+        Appco was built by operators tired of shared spreadsheets, half-finished implementations, and
         enterprise sales cycles. We host and provision ERPNext so growing teams get a real ERP in minutes.
       </SectionSub>
       <div className="mt-12 grid gap-6 text-muted-foreground md:grid-cols-2">

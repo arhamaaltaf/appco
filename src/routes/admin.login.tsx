@@ -9,7 +9,7 @@ import { adminLogin, ADMIN_TOKEN_KEY } from "@/lib/admin-api";
 export const Route = createFileRoute("/admin/login")({
   head: () => ({
     meta: [
-      { title: "Admin — Forge ERP" },
+      { title: "Admin — Appco" },
       { name: "robots", content: "noindex,nofollow" },
     ],
   }),
@@ -82,7 +82,7 @@ function AdminLogin() {
             {loading ? "Signing in..." : "Sign in"}
           </Button>
           <p className="text-center text-xs text-muted-foreground">
-            Demo: <code className="rounded bg-muted px-1 py-0.5">admin@forgeerp.app</code> /{" "}
+            Demo: <code className="rounded bg-muted px-1 py-0.5">admin@appco.app</code> /{" "}
             <code className="rounded bg-muted px-1 py-0.5">admin123</code>
           </p>
         </form>

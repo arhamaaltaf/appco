@@ -7,7 +7,7 @@ export function Logo({ className = "" }: { className?: string }) {
         <span className="absolute inset-0.5 rounded-[5px] bg-background/40" />
         <span className="relative font-display text-sm font-bold text-foreground">F</span>
       </span>
-      <span className="tracking-tight">Forge ERP</span>
+      <span className="tracking-tight">Appco</span>
     </Link>
   );
 }

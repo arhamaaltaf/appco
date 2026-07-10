@@ -13,9 +13,9 @@ export const Route = createFileRoute("/signup")({
   validateSearch: (s) => searchSchema.parse(s),
   head: () => ({
     meta: [
-      { title: "Create your workspace — Forge ERP" },
-      { name: "description", content: "Sign up and get your dedicated Forge ERP instance provisioned in minutes." },
-      { property: "og:title", content: "Create your workspace — Forge ERP" },
+      { title: "Create your workspace — Appco" },
+      { name: "description", content: "Sign up and get your dedicated Appco instance provisioned in minutes." },
+      { property: "og:title", content: "Create your workspace — Appco" },
       { property: "og:description", content: "Your own dedicated ERPNext instance, provisioned automatically." },
     ],
   }),
