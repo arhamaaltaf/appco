@@ -5,10 +5,10 @@ import { Mail } from "lucide-react";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — Forge ERP" },
-      { name: "description", content: "Get in touch with the Forge ERP team. Sales, support, and partnerships." },
-      { property: "og:title", content: "Contact — Forge ERP" },
-      { property: "og:description", content: "Reach the Forge ERP team." },
+      { title: "Contact — Appco" },
+      { name: "description", content: "Get in touch with the Appco team. Sales, support, and partnerships." },
+      { property: "og:title", content: "Contact — Appco" },
+      { property: "og:description", content: "Reach the Appco team." },
     ],
   }),
   component: Contact,
@@ -22,9 +22,9 @@ function Contact() {
       <SectionSub>We answer emails within one business day.</SectionSub>
       <div className="mt-10 grid gap-4 md:grid-cols-3">
         {[
-          { label: "Sales", email: "sales@forgeerp.app" },
-          { label: "Support", email: "support@forgeerp.app" },
-          { label: "Partnerships", email: "partners@forgeerp.app" },
+          { label: "Sales", email: "sales@appco.app" },
+          { label: "Support", email: "support@appco.app" },
+          { label: "Partnerships", email: "partners@appco.app" },
         ].map((c) => (
           <a
             key={c.email}

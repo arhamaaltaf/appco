@@ -23,7 +23,7 @@ import {
 export const Route = createFileRoute("/admin/")({
   head: () => ({
     meta: [
-      { title: "Admin Dashboard — Forge ERP" },
+      { title: "Admin Dashboard — Appco" },
       { name: "robots", content: "noindex,nofollow" },
     ],
   }),

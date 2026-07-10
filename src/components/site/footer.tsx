@@ -66,7 +66,7 @@ export function Footer() {
       </div>
       <div className="border-t border-border">
         <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-2 px-6 py-6 text-xs text-muted-foreground sm:flex-row sm:items-center">
-          <div>© {new Date().getFullYear()} Forge ERP. All rights reserved.</div>
+          <div>© {new Date().getFullYear()} Appco. All rights reserved.</div>
           <div>Built on ERPNext · Hosted on isolated instances</div>
         </div>
       </div>

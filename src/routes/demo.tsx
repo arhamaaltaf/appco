@@ -10,10 +10,10 @@ import { CheckCircle2 } from "lucide-react";
 export const Route = createFileRoute("/demo")({
   head: () => ({
     meta: [
-      { title: "Book a demo — Forge ERP" },
-      { name: "description", content: "See Forge ERP in action. Book a 30-minute walkthrough with our team." },
-      { property: "og:title", content: "Book a demo — Forge ERP" },
-      { property: "og:description", content: "See Forge ERP in action. 30 minutes, no slides." },
+      { title: "Book a demo — Appco" },
+      { name: "description", content: "See Appco in action. Book a 30-minute walkthrough with our team." },
+      { property: "og:title", content: "Book a demo — Appco" },
+      { property: "og:description", content: "See Appco in action. 30 minutes, no slides." },
     ],
   }),
   component: DemoPage,

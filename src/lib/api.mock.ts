@@ -29,7 +29,7 @@ export async function getSignupStatus(jobId: string): Promise<StatusResponse> {
   if (elapsed < 16000) return { status: "configuring", stage: "finalizing", progress: elapsed / 16000 };
 
   const slug = job.companyName.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "workspace";
-  return { status: "ready", progress: 1, siteUrl: `https://${slug}.forgeerp.app` };
+  return { status: "ready", progress: 1, siteUrl: `https://${slug}.appco.app` };
 }
 
 export async function subscribeNewsletter(_email: string) {

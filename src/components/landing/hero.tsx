@@ -55,7 +55,7 @@ export function Hero() {
               <span className="h-2.5 w-2.5 rounded-full bg-muted" />
               <span className="h-2.5 w-2.5 rounded-full bg-muted" />
               <span className="ml-3 font-mono text-xs text-muted-foreground">
-                acme.forgeerp.app / dashboard
+                acme.appco.app / dashboard
               </span>
             </div>
             <div className="grid gap-4 p-6 md:grid-cols-4">

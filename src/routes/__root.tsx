@@ -77,13 +77,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Forge ERP — Your own ERP system, live in minutes" },
+      { title: "Appco — Your own ERP system, live in minutes" },
       {
         name: "description",
         content:
           "Hosted ERPNext for growing teams. Sign up, pick a plan, and get a dedicated ERP instance provisioned automatically — no servers to manage.",
       },
-      { property: "og:title", content: "Forge ERP — Your own ERP system, live in minutes" },
+      { property: "og:title", content: "Appco — Your own ERP system, live in minutes" },
       {
         property: "og:description",
         content:

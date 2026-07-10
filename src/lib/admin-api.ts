@@ -3,7 +3,7 @@
 const BASE = import.meta.env.VITE_API_URL as string | undefined;
 
 // Demo credentials — replace with real auth against your backend.
-const DEMO_ADMIN_EMAIL = "admin@forgeerp.app";
+const DEMO_ADMIN_EMAIL = "admin@appco.app";
 const DEMO_ADMIN_PASSWORD = "admin123";
 
 export const ADMIN_TOKEN_KEY = "forge_admin_token";
@@ -69,7 +69,7 @@ function seedSubscribers(): Subscriber[] {
       status,
       mrr: status === "canceled" ? 0 : PLAN_PRICE[plan] * Math.max(1, Math.round(seats / 10)),
       createdAt: new Date(now - createdDaysAgo * 86400000).toISOString(),
-      siteUrl: `https://${slug}.forgeerp.app`,
+      siteUrl: `https://${slug}.appco.app`,
       seats,
       lastActive: new Date(now - activeDaysAgo * 86400000).toISOString(),
     };
