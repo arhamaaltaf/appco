@@ -83,7 +83,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content:
           "Hosted ERPNext for growing teams. Sign up, pick a plan, and get a dedicated ERP instance provisioned automatically — no servers to manage.",
       },
+<<<<<<< Updated upstream
       { property: "og:title", content: "Appco — Your own ERP system, live in minutes" },
+=======
+      { property: "og:title", content: "appco — Your own ERP system, live in minutes" },
+>>>>>>> Stashed changes
       {
         property: "og:description",
         content:

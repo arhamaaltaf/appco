@@ -6,7 +6,7 @@ import { StageList, type StageKey } from "./stage-list";
 import { Button } from "@/components/ui/button";
 
 const tips = [
-  "Each Forge workspace is a fully isolated ERPNext instance — no shared databases.",
+  "Each appco workspace is a fully isolated ERPNext instance — no shared databases.",
   "You can invite unlimited teammates during your free trial.",
   "HR, Payroll, Expenses, Accounting, Inventory, and CRM ship enabled by default.",
   "Automatic daily backups start the moment your instance is live.",

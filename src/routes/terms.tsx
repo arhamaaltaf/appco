@@ -4,10 +4,17 @@ import { Section, SectionEyebrow, SectionHeading } from "@/components/site/secti
 export const Route = createFileRoute("/terms")({
   head: () => ({
     meta: [
+<<<<<<< Updated upstream
       { title: "Terms — Appco" },
       { name: "description", content: "Terms of service for Appco hosted ERPNext instances." },
       { property: "og:title", content: "Terms — Appco" },
       { property: "og:description", content: "Terms of service for Appco." },
+=======
+      { title: "Terms — appco" },
+      { name: "description", content: "Terms of service for appco hosted ERPNext instances." },
+      { property: "og:title", content: "Terms — appco" },
+      { property: "og:description", content: "Terms of service for appco." },
+>>>>>>> Stashed changes
     ],
   }),
   component: Terms,

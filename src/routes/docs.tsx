@@ -4,10 +4,17 @@ import { Section, SectionEyebrow, SectionHeading, SectionSub } from "@/component
 export const Route = createFileRoute("/docs")({
   head: () => ({
     meta: [
+<<<<<<< Updated upstream
       { title: "Docs — Appco" },
       { name: "description", content: "Guides, API references, and admin documentation for Appco." },
       { property: "og:title", content: "Docs — Appco" },
       { property: "og:description", content: "Guides and references for Appco." },
+=======
+      { title: "Docs — appco" },
+      { name: "description", content: "Guides, API references, and admin documentation for appco." },
+      { property: "og:title", content: "Docs — appco" },
+      { property: "og:description", content: "Guides and references for appco." },
+>>>>>>> Stashed changes
     ],
   }),
   component: Docs,

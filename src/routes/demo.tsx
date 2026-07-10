@@ -10,10 +10,17 @@ import { CheckCircle2 } from "lucide-react";
 export const Route = createFileRoute("/demo")({
   head: () => ({
     meta: [
+<<<<<<< Updated upstream
       { title: "Book a demo — Appco" },
       { name: "description", content: "See Appco in action. Book a 30-minute walkthrough with our team." },
       { property: "og:title", content: "Book a demo — Appco" },
       { property: "og:description", content: "See Appco in action. 30 minutes, no slides." },
+=======
+      { title: "Book a demo — appco" },
+      { name: "description", content: "See appco in action. Book a 30-minute walkthrough with our team." },
+      { property: "og:title", content: "Book a demo — appco" },
+      { property: "og:description", content: "See appco in action. 30 minutes, no slides." },
+>>>>>>> Stashed changes
     ],
   }),
   component: DemoPage,
@@ -40,7 +47,7 @@ function DemoPage() {
       <div className="relative mx-auto grid max-w-5xl gap-12 px-6 py-24 md:grid-cols-2 md:items-center">
         <div>
           <h1 className="font-display text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
-            See Forge in 30 minutes.
+            See appco in 30 minutes.
           </h1>
           <p className="mt-4 text-lg text-muted-foreground">
             A live walkthrough of provisioning, modules, and admin — tailored to your business. No slides.
