@@ -13,15 +13,9 @@ export const Route = createFileRoute("/signup")({
   validateSearch: (s) => searchSchema.parse(s),
   head: () => ({
     meta: [
-<<<<<<< Updated upstream
       { title: "Create your workspace — Appco" },
       { name: "description", content: "Sign up and get your dedicated Appco instance provisioned in minutes." },
       { property: "og:title", content: "Create your workspace — Appco" },
-=======
-      { title: "Create your workspace — appco" },
-      { name: "description", content: "Sign up and get your dedicated appco instance provisioned in minutes." },
-      { property: "og:title", content: "Create your workspace — appco" },
->>>>>>> Stashed changes
       { property: "og:description", content: "Your own dedicated ERPNext instance, provisioned automatically." },
     ],
   }),

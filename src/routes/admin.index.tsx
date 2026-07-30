@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { LogOut, Search, Users, DollarSign, TrendingUp, UserPlus, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -20,6 +20,8 @@ import {
   type Subscriber,
 } from "@/lib/admin-api";
 
+const ADMIN_REFRESH_EVENT = "appco:admin-refresh";
+
 export const Route = createFileRoute("/admin/")({
   head: () => ({
     meta: [
@@ -32,7 +34,9 @@ export const Route = createFileRoute("/admin/")({
 
 function AdminDashboard() {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const [authed, setAuthed] = useState<boolean | null>(null);
+  const [refreshTick, setRefreshTick] = useState(0);
 
   useEffect(() => {
     const token = sessionStorage.getItem(ADMIN_TOKEN_KEY);
@@ -43,13 +47,27 @@ function AdminDashboard() {
     setAuthed(true);
   }, [navigate]);
 
+  useEffect(() => {
+    function onRefresh() {
+      setRefreshTick((tick) => tick + 1);
+      queryClient.invalidateQueries({ queryKey: ["admin"] });
+    }
+
+    window.addEventListener(ADMIN_REFRESH_EVENT, onRefresh);
+    window.addEventListener("storage", onRefresh);
+    return () => {
+      window.removeEventListener(ADMIN_REFRESH_EVENT, onRefresh);
+      window.removeEventListener("storage", onRefresh);
+    };
+  }, [queryClient]);
+
   const statsQuery = useQuery({
-    queryKey: ["admin", "stats"],
+    queryKey: ["admin", "stats", refreshTick],
     queryFn: getAdminStats,
     enabled: authed === true,
   });
   const subsQuery = useQuery({
-    queryKey: ["admin", "subscribers"],
+    queryKey: ["admin", "subscribers", refreshTick],
     queryFn: getAdminSubscribers,
     enabled: authed === true,
   });
