@@ -86,7 +86,7 @@ export function Header() {
                 <Link to="/demo">Book a demo</Link>
               </Button>
               <Button asChild size="sm" className="bg-gradient-accent text-primary-foreground">
-                <Link to="/signup">Start free trial</Link>
+                <Link to="/signup" onClick={() => setOpen(false)}>Start free trial</Link>
               </Button>
             </div>
           </div>

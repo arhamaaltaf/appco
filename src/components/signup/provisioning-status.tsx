@@ -104,7 +104,7 @@ export function ProvisioningStatus({
         </div>
         <h2 className="mt-6 font-display text-2xl font-semibold text-foreground">Your workspace is ready.</h2>
         <p className="mt-2 text-sm text-muted-foreground">
-          Open {companyName}'s new workspace to get started.
+          Sign in to {companyName}'s new workspace with the work email and password you used to sign up.
         </p>
         <div className="mt-6 rounded-lg border border-border bg-background p-3 font-mono text-sm text-foreground">
           {status.siteUrl}

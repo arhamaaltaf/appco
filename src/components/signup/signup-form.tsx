@@ -53,13 +53,23 @@ export function SignupForm({
 
       <div className="space-y-2">
         <Label htmlFor="email">Work email</Label>
-        <Input id="email" type="email" placeholder="you@acme.com" {...register("email")} />
+        <Input id="email" type="email" autoComplete="email" placeholder="you@acme.com" {...register("email")} />
         {errors.email && <p className="text-xs text-destructive">{errors.email.message}</p>}
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="password">Password</Label>
-        <Input id="password" type="password" placeholder="At least 8 characters" {...register("password")} />
+        <Label htmlFor="password">Create a password</Label>
+        <Input
+          id="password"
+          type="password"
+          autoComplete="new-password"
+          placeholder="At least 8 characters"
+          aria-describedby="signup-password-help"
+          {...register("password")}
+        />
+        <p id="signup-password-help" className="text-xs text-muted-foreground">
+          Use this password to sign in after your workspace is ready.
+        </p>
         {errors.password && <p className="text-xs text-destructive">{errors.password.message}</p>}
       </div>
 
@@ -93,7 +103,7 @@ export function SignupForm({
         className="w-full bg-gradient-accent text-primary-foreground shadow-glow"
         size="lg"
       >
-        {submitting ? "Creating your workspace…" : "Create workspace"}
+        {submitting ? "Creating your workspace…" : "Start free trial"}
       </Button>
 
       <p className="text-center text-xs text-muted-foreground">
