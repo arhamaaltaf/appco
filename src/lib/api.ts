@@ -1,6 +1,5 @@
 import * as mock from "./api.mock";
 import { BROKER_URL as BASE } from "./broker-config";
-import { accountsEnabled } from "./accounts";
 
 const DOMAIN_SUFFIX = import.meta.env.VITE_DOMAIN_SUFFIX?.trim().toLowerCase() || "internpk.info";
 
@@ -132,10 +131,9 @@ export async function signup(payload: SignupPayload): Promise<SignupResponse> {
   if (!BASE) return mock.signup(payload);
 
   const { companyName, email, password, plan } = payload;
-  const response = await req<BrokerRegisterResponse>(accountsEnabled ? "/auth/register" : "/api/register", {
+  const response = await req<BrokerRegisterResponse>("/api/register", {
     method: "POST",
-    ...(accountsEnabled && { credentials: "include" }),
-    body: JSON.stringify(accountsEnabled ? { companyName, plan } : { companyName, email, password, plan }),
+    body: JSON.stringify({ companyName, email, password, plan }),
   });
 
   const jobId = response.jobId || response.id;

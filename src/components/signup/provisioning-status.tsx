@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, ExternalLink, AlertCircle } from "lucide-react";
 import { getSignupStatus, type StatusResponse } from "@/lib/api";
-import { accountsEnabled, accountStart } from "@/lib/accounts";
 import { StageList, type StageKey } from "./stage-list";
 import { Button } from "@/components/ui/button";
 
@@ -82,9 +81,6 @@ export function ProvisioningStatus({
   const isReady = status.status === "ready";
   const isFailed = status.status === "failed";
   const currentStage = stageFromProgress(progress);
-  const workspaceUrl = accountsEnabled && status.siteUrl
-    ? accountStart({ site: new URL(status.siteUrl).hostname })
-    : status.siteUrl;
 
   useEffect(() => {
     if (!isReady) return;
@@ -94,8 +90,7 @@ export function ProvisioningStatus({
       // A browser storage restriction should not interrupt workspace access.
     }
     window.dispatchEvent(new Event(ADMIN_REFRESH_EVENT));
-    if (accountsEnabled && workspaceUrl) window.location.replace(workspaceUrl);
-  }, [isReady, workspaceUrl]);
+  }, [isReady]);
 
   if (isReady) {
     return (
@@ -119,7 +114,7 @@ export function ProvisioningStatus({
           className="mt-6 w-full bg-gradient-accent text-primary-foreground shadow-glow"
           size="lg"
         >
-          <a href={workspaceUrl} target={accountsEnabled ? undefined : "_blank"} rel="noopener noreferrer">
+          <a href={status.siteUrl} target="_blank" rel="noopener noreferrer">
             Open your workspace <ExternalLink className="ml-2 h-4 w-4" />
           </a>
         </Button>
