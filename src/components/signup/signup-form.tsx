@@ -23,10 +23,12 @@ const plans: { id: PlanId; label: string; price: string }[] = [
 
 export function SignupForm({
   defaultPlan = "growth",
+  signedInEmail,
   submitting,
   onSubmit,
 }: {
   defaultPlan?: PlanId;
+  signedInEmail?: string;
   submitting: boolean;
   onSubmit: (v: SignupFormValues) => void;
 }) {
@@ -37,8 +39,8 @@ export function SignupForm({
     setValue,
     formState: { errors },
   } = useForm<SignupFormValues>({
-    resolver: zodResolver(schema),
-    defaultValues: { plan: defaultPlan, companyName: "", email: "", password: "" },
+    resolver: zodResolver(signedInEmail ? schema.extend({ password: z.literal("") }) : schema),
+    defaultValues: { plan: defaultPlan, companyName: "", email: signedInEmail || "", password: "" },
   });
 
   const plan = watch("plan");
@@ -53,15 +55,17 @@ export function SignupForm({
 
       <div className="space-y-2">
         <Label htmlFor="email">Work email</Label>
-        <Input id="email" type="email" placeholder="you@acme.com" {...register("email")} />
+        <Input id="email" type="email" placeholder="you@acme.com" readOnly={Boolean(signedInEmail)} {...register("email")} />
         {errors.email && <p className="text-xs text-destructive">{errors.email.message}</p>}
       </div>
 
-      <div className="space-y-2">
-        <Label htmlFor="password">Password</Label>
-        <Input id="password" type="password" placeholder="At least 8 characters" {...register("password")} />
-        {errors.password && <p className="text-xs text-destructive">{errors.password.message}</p>}
-      </div>
+      {!signedInEmail && (
+        <div className="space-y-2">
+          <Label htmlFor="password">Password</Label>
+          <Input id="password" type="password" placeholder="At least 8 characters" {...register("password")} />
+          {errors.password && <p className="text-xs text-destructive">{errors.password.message}</p>}
+        </div>
+      )}
 
       <div className="space-y-2">
         <Label>Plan</Label>

@@ -8,7 +8,7 @@ type Billing = "monthly" | "annual";
 
 const tiers = [
   {
-    id: "starter",
+    id: "starter" as const,
     name: "Starter",
     tagline: "For small teams getting off spreadsheets.",
     monthly: 49,
@@ -16,7 +16,7 @@ const tiers = [
     features: ["Up to 5 users", "HR & Payroll", "Expense Management", "Accounting basics", "10 GB storage", "Email support"],
   },
   {
-    id: "growth",
+    id: "growth" as const,
     name: "Growth",
     tagline: "For growing companies running full operations.",
     monthly: 149,
@@ -32,7 +32,7 @@ const tiers = [
     ],
   },
   {
-    id: "enterprise",
+    id: "enterprise" as const,
     name: "Enterprise",
     tagline: "For established teams with custom requirements.",
     monthly: 449,

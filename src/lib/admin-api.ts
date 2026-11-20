@@ -1,8 +1,6 @@
-// Admin API client. Frontend-only with mock data fallback.
-// In production, wire these up to your Node/Express backend via VITE_API_URL.
-const BASE = import.meta.env.VITE_API_URL as string | undefined;
+import { BROKER_URL as BASE } from "./broker-config";
 
-// Demo credentials — replace with real auth against your backend.
+// Demo credentials are used when no broker URL is configured.
 const DEMO_ADMIN_EMAIL = "admin@appco.app";
 const DEMO_ADMIN_PASSWORD = "admin123";
 

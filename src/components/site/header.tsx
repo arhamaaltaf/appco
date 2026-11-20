@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Logo } from "./logo";
 import { Button } from "@/components/ui/button";
+import { accountsEnabled, accountStart } from "@/lib/accounts";
 
 const nav = [
   { label: "Features", href: "/#features" },
@@ -42,6 +43,11 @@ export function Header() {
           ))}
         </nav>
         <div className="hidden items-center gap-2 md:flex">
+          {accountsEnabled && (
+            <Button asChild variant="ghost" size="sm">
+              <a href={accountStart()}>Sign in</a>
+            </Button>
+          )}
           <Button asChild variant="ghost" size="sm">
             <Link to="/demo">Book a demo</Link>
           </Button>
@@ -71,6 +77,11 @@ export function Header() {
               </a>
             ))}
             <div className="mt-2 flex flex-col gap-2">
+              {accountsEnabled && (
+                <Button asChild variant="ghost" size="sm">
+                  <a href={accountStart()}>Sign in</a>
+                </Button>
+              )}
               <Button asChild variant="outline" size="sm">
                 <Link to="/demo">Book a demo</Link>
               </Button>

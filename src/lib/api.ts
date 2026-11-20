@@ -1,8 +1,7 @@
-// Thin API client. Reads the broker URL from VITE_BROKER_URL and falls back to VITE_API_URL.
 import * as mock from "./api.mock";
+import { BROKER_URL as BASE } from "./broker-config";
+import { accountsEnabled } from "./accounts";
 
-const BASE = (import.meta.env.VITE_BROKER_URL?.trim() || import.meta.env.VITE_API_URL?.trim())
-  ?.replace(/\/+$/, "");
 const DOMAIN_SUFFIX = import.meta.env.VITE_DOMAIN_SUFFIX?.trim().toLowerCase() || "internpk.info";
 
 export type PlanId = "starter" | "growth" | "enterprise";
@@ -133,9 +132,10 @@ export async function signup(payload: SignupPayload): Promise<SignupResponse> {
   if (!BASE) return mock.signup(payload);
 
   const { companyName, email, password, plan } = payload;
-  const response = await req<BrokerRegisterResponse>("/api/register", {
+  const response = await req<BrokerRegisterResponse>(accountsEnabled ? "/auth/register" : "/api/register", {
     method: "POST",
-    body: JSON.stringify({ companyName, email, password, plan }),
+    ...(accountsEnabled && { credentials: "include" }),
+    body: JSON.stringify(accountsEnabled ? { companyName, plan } : { companyName, email, password, plan }),
   });
 
   const jobId = response.jobId || response.id;
