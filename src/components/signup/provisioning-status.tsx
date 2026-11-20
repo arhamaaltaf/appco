@@ -61,7 +61,7 @@ export function ProvisioningStatus({
         const s = await getSignupStatus(jobId);
         if (!alive) return;
         setStatus(s);
-        if (s.status === "failed") return;
+        if (s.status === "ready" || s.status === "failed") return;
       } catch {
         // swallow, keep polling
       }
@@ -100,7 +100,7 @@ export function ProvisioningStatus({
         </div>
         <h2 className="mt-6 font-display text-2xl font-semibold text-foreground">Your workspace is ready.</h2>
         <p className="mt-2 text-sm text-muted-foreground">
-          Redirecting you to {companyName}'s new home.
+          Open {companyName}'s new workspace to get started.
         </p>
         <div className="mt-6 rounded-lg border border-border bg-background p-3 font-mono text-sm text-foreground">
           {status.siteUrl}
@@ -183,7 +183,7 @@ export function ProvisioningStatus({
       </div>
 
       <p className="mt-4 text-center text-xs text-muted-foreground">
-        You can keep this tab open — we’ll redirect you the moment your workspace is ready.
+        Keep this tab open to get your workspace link when it's ready.
       </p>
     </div>
   );

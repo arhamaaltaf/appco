@@ -1,8 +1,9 @@
 // Thin API client. Reads the broker URL from VITE_BROKER_URL and falls back to VITE_API_URL.
 import * as mock from "./api.mock";
 
-const BASE = (import.meta.env.VITE_BROKER_URL || import.meta.env.VITE_API_URL) as string | undefined;
-const DOMAIN_SUFFIX = import.meta.env.VITE_DOMAIN_SUFFIX as string | undefined;
+const BASE = (import.meta.env.VITE_BROKER_URL?.trim() || import.meta.env.VITE_API_URL?.trim())
+  ?.replace(/\/+$/, "");
+const DOMAIN_SUFFIX = import.meta.env.VITE_DOMAIN_SUFFIX?.trim().toLowerCase() || "internpk.info";
 
 export type PlanId = "starter" | "growth" | "enterprise";
 
@@ -47,6 +48,7 @@ interface BrokerStatusResponse {
   progress?: number;
   returnvalue?: {
     site?: string;
+    url?: string;
   };
   failedReason?: string;
   error?: string;
@@ -64,33 +66,49 @@ async function req<T>(path: string, init?: RequestInit): Promise<T> {
   return (await res.json()) as T;
 }
 
-function toSiteUrl(site?: string): string | undefined {
+const TENANT_LABEL = /^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$/i;
+
+function toSiteUrl(value?: string): string | undefined {
+  const site = value?.trim();
   if (!site) return undefined;
-  const normalized = site.trim().replace(/\/$/, "");
-  if (/^https?:\/\//i.test(normalized)) return normalized;
 
-  const hasPort = /:\d+$/.test(normalized);
-  const alreadyHasDomain = normalized.includes(".") || normalized.includes(":") || normalized.startsWith("localhost");
-
-  if (alreadyHasDomain) {
-    return `http://${normalized}${hasPort ? "" : ":8000"}`;
+  const suffix = "." + DOMAIN_SUFFIX;
+  const address = TENANT_LABEL.test(site) ? site + suffix : site;
+  try {
+    const url = new URL(address.includes("://") ? address : "https://" + address);
+    const tenant = url.hostname.slice(0, -suffix.length);
+    if (
+      url.protocol === "https:" &&
+      !url.port &&
+      !url.username &&
+      !url.password &&
+      url.hostname.endsWith(suffix) &&
+      TENANT_LABEL.test(tenant)
+    ) {
+      return url.href;
+    }
+  } catch {
+    return undefined;
   }
-
-  if (DOMAIN_SUFFIX) {
-    return `http://${normalized}.${DOMAIN_SUFFIX}${hasPort ? "" : ":8000"}`;
-  }
-
-  return `http://${normalized}:8000`;
 }
 
 function normalizeStatus(raw: BrokerStatusResponse): StatusResponse {
   const state = raw.state?.toLowerCase();
-  const site = raw.returnvalue?.site;
   const progress = typeof raw.progress === "number" ? Math.max(0, Math.min(100, raw.progress)) : undefined;
 
   switch (state) {
-    case "completed":
-      return { status: "ready", stage: "ready", progress: 100, siteUrl: toSiteUrl(site) };
+    case "completed": {
+      const siteUrl = toSiteUrl(raw.returnvalue?.url) || toSiteUrl(raw.returnvalue?.site);
+      if (!siteUrl) {
+        return {
+          status: "failed",
+          stage: "failed",
+          error:
+            "Provisioning completed, but no valid workspace address was returned. Contact support for access.",
+        };
+      }
+      return { status: "ready", stage: "ready", progress: 100, siteUrl };
+    }
     case "active":
       return { status: "provisioning", stage: "installing", progress: progress ?? 60 };
     case "failed":
