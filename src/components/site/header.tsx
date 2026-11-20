@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Logo } from "./logo";
 import { Button } from "@/components/ui/button";
-import { accountsEnabled, accountSignInUrl } from "@/lib/accounts";
+import { accountsEnabled } from "@/lib/accounts";
 
 const nav = [
   { label: "Features", href: "/#features" },
@@ -45,7 +45,7 @@ export function Header() {
         <div className="hidden items-center gap-2 md:flex">
           {accountsEnabled && (
             <Button asChild variant="ghost" size="sm">
-              <a href={accountSignInUrl}>Sign in</a>
+              <Link to="/sign-in">Sign in</Link>
             </Button>
           )}
           <Button asChild variant="ghost" size="sm">
@@ -79,7 +79,7 @@ export function Header() {
             <div className="mt-2 flex flex-col gap-2">
               {accountsEnabled && (
                 <Button asChild variant="ghost" size="sm">
-                  <a href={accountSignInUrl}>Sign in</a>
+                  <Link to="/sign-in" onClick={() => setOpen(false)}>Sign in</Link>
                 </Button>
               )}
               <Button asChild variant="outline" size="sm">
