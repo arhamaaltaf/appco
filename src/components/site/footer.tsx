@@ -18,7 +18,6 @@ const cols = [
       { label: "About", href: "/about" },
       { label: "Contact", href: "/contact" },
       { label: "Docs", href: "/docs" },
-      { label: "Book a demo", href: "/demo" },
     ],
   },
   {

@@ -152,13 +152,3 @@ export async function subscribeNewsletter(email: string): Promise<{ ok: true }> 
   if (!BASE) return mock.subscribeNewsletter(email);
   return req("/newsletter", { method: "POST", body: JSON.stringify({ email }) });
 }
-
-export async function bookDemo(payload: {
-  name: string;
-  email: string;
-  company: string;
-  message?: string;
-}): Promise<{ ok: true }> {
-  if (!BASE) return mock.bookDemo(payload);
-  return req("/demo", { method: "POST", body: JSON.stringify(payload) });
-}

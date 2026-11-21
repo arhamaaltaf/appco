@@ -48,9 +48,6 @@ export function Header() {
               <Link to="/sign-in">Sign in</Link>
             </Button>
           )}
-          <Button asChild variant="ghost" size="sm">
-            <Link to="/demo">Book a demo</Link>
-          </Button>
           <Button asChild size="sm" className="bg-gradient-accent text-primary-foreground shadow-glow">
             <Link to="/signup">Start free trial</Link>
           </Button>
@@ -82,9 +79,6 @@ export function Header() {
                   <Link to="/sign-in" onClick={() => setOpen(false)}>Sign in</Link>
                 </Button>
               )}
-              <Button asChild variant="outline" size="sm">
-                <Link to="/demo">Book a demo</Link>
-              </Button>
               <Button asChild size="sm" className="bg-gradient-accent text-primary-foreground">
                 <Link to="/signup" onClick={() => setOpen(false)}>Start free trial</Link>
               </Button>

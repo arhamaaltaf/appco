@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle2, ExternalLink, AlertCircle } from "lucide-react";
+import { CheckCircle2, ArrowRight, AlertCircle } from "lucide-react";
 import { getSignupStatus, type StatusResponse } from "@/lib/api";
 import { StageList, type StageKey } from "./stage-list";
 import { Button } from "@/components/ui/button";
@@ -93,6 +94,7 @@ export function ProvisioningStatus({
   }, [isReady]);
 
   if (isReady) {
+    const workspace = status.siteUrl ? new URL(status.siteUrl).hostname : undefined;
     return (
       <motion.div
         initial={{ opacity: 0, scale: 0.98 }}
@@ -106,17 +108,14 @@ export function ProvisioningStatus({
         <p className="mt-2 text-sm text-muted-foreground">
           Sign in to {companyName}'s new workspace with the work email and password you used to sign up.
         </p>
-        <div className="mt-6 rounded-lg border border-border bg-background p-3 font-mono text-sm text-foreground">
-          {status.siteUrl}
-        </div>
         <Button
           asChild
           className="mt-6 w-full bg-gradient-accent text-primary-foreground shadow-glow"
           size="lg"
         >
-          <a href={status.siteUrl} target="_blank" rel="noopener noreferrer">
-            Open your workspace <ExternalLink className="ml-2 h-4 w-4" />
-          </a>
+          <Link to="/sign-in" search={{ workspace }}>
+            Go to sign in <ArrowRight className="ml-2 h-4 w-4" />
+          </Link>
         </Button>
       </motion.div>
     );
@@ -187,7 +186,7 @@ export function ProvisioningStatus({
       </div>
 
       <p className="mt-4 text-center text-xs text-muted-foreground">
-        Keep this tab open to get your workspace link when it's ready.
+        Keep this tab open until your workspace is ready.
       </p>
     </div>
   );

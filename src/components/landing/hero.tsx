@@ -28,14 +28,11 @@ export function Hero() {
             Sign up, pick a plan, and get a dedicated ERPNext instance provisioned
             for your company. No servers to manage, no infrastructure to touch.
           </p>
-          <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row">
+          <div className="mt-10">
             <Button asChild size="lg" className="bg-gradient-accent text-primary-foreground shadow-glow">
               <Link to="/signup">
                 Get your workspace <ArrowRight className="ml-1 h-4 w-4" />
               </Link>
-            </Button>
-            <Button asChild size="lg" variant="ghost">
-              <Link to="/demo">Book a demo</Link>
             </Button>
           </div>
           <div className="mt-4 text-xs text-muted-foreground">

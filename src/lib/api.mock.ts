@@ -90,11 +90,6 @@ export async function subscribeNewsletter(_email: string) {
   return { ok: true as const };
 }
 
-export async function bookDemo(_p: unknown) {
-  await delay(500);
-  return { ok: true as const };
-}
-
 function delay(ms: number) {
   return new Promise((r) => setTimeout(r, ms));
 }
