@@ -10,15 +10,13 @@ const errors = {
   workspace: "Enter your workspace address to continue.",
   expired: "Your sign-in expired. Please try again.",
   unavailable: "Workspace sign-in is temporarily unavailable. Please try again shortly.",
-  verify: "Your workspace requires another verification step. Continue on your workspace sign-in page.",
+  verify: "Your workspace requires another verification step. Contact your workspace administrator for help.",
 };
 
 const signInSearch = z.object({
   workspace: z.string().max(253).optional().catch(undefined),
   error: z.enum(["credentials", "workspace", "expired", "unavailable", "verify"]).optional().catch(undefined),
 });
-
-const domainSuffix = `.${import.meta.env.VITE_DOMAIN_SUFFIX?.trim() || "internpk.info"}`;
 
 export const Route = createFileRoute("/sign-in")({
   validateSearch: (search) => signInSearch.parse(search),
@@ -28,9 +26,6 @@ export const Route = createFileRoute("/sign-in")({
 
 function SignInPage() {
   const { workspace, error } = Route.useSearch();
-  const workspaceLabel = workspace?.slice(0, -domainSuffix.length) || "";
-  const verificationUrl = error === "verify" && workspace?.endsWith(domainSuffix) &&
-    /^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$/.test(workspaceLabel) ? `https://${workspace}/login` : undefined;
   return (
     <div className="relative min-h-[65vh]">
       <div className="pointer-events-none absolute inset-0 bg-gradient-hero" />
@@ -41,9 +36,6 @@ function SignInPage() {
           {accountsEnabled ? (
             <form action={accountLoginEndpoint} method="post" className="mt-6 space-y-4">
               {error && <p role="alert" className="text-sm text-destructive">{errors[error]}</p>}
-              {verificationUrl && (
-                <a href={verificationUrl} className="text-sm text-primary underline">Open workspace sign-in</a>
-              )}
               <div className="space-y-2">
                 <Label htmlFor="sign-in-email">Email</Label>
                 <Input id="sign-in-email" name="email" type="email" autoComplete="username" maxLength={254} required />
@@ -73,7 +65,7 @@ function SignInPage() {
               <Button type="submit" className="w-full">Sign in</Button>
             </form>
           ) : (
-            <p className="mt-6 text-sm text-muted-foreground">Appco sign-in is currently unavailable. Open your workspace to sign in.</p>
+            <p className="mt-6 text-sm text-muted-foreground">Appco sign-in is currently unavailable. Please try again later.</p>
           )}
           <p className="mt-5 text-center text-sm text-muted-foreground">
             Need a workspace? <Link to="/signup" className="text-primary underline">Start a free trial</Link>
